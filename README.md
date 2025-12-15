@@ -17,3 +17,14 @@ mysql> show tables;
 | usuarios              |
 +-----------------------+
 ```
+Estructura de las tablas.
+```
+mysql> select * from codigos_rol;
++----+------------+-----------+--------+
+| id | codigo     | rol       | activo |
++----+------------+-----------+--------+
+|  1 | ADMIN-2025 | admin     |      1 |
+|  2 | MED-2025   | asistente |      1 |
+|  3 | PAC-2025   | cliente   |      1 |
++----+------------+-----------+--------+
+```
