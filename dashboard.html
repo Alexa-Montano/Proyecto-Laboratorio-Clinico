@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | Laboratorio Clínico</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <span>Laboratorio Clínico BioTEC</span>
+      <img src="/img/logo.png" alt="Logo" class="logo">
+    </div>
+
+    <div class="nav-right" id="menu">
+      <!-- menú dinámico -->
+    </div>
+  </nav>
+
+  <!-- CONTENIDO -->
+  <main class="main">
+    <div class="dashboard-card">
+      <h1 class="welcome-title">
+        Bienvenido, <span id="nombreUsuario"></span>
+      </h1>
+
+      <p class="welcome-role">
+        Rol: <span id="rolUsuario"></span>
+      </p>
+
+      <hr class="divider">
+
+      <p class="welcome-text">
+        Selecciona una opción del menú superior para continuar.
+      </p>
+    </div>
+  </main>
+
+  <!-- SCRIPTS -->
+  <script>
+    // MENÚ DINÁMICO
+    fetch('/menu')
+      .then(res => res.json())
+      .then(menu => {
+        const contenedor = document.getElementById('menu');
+        contenedor.innerHTML = '';
+
+        menu.forEach(item => {
+          const link = document.createElement('a');
+          link.href = item.url;
+          link.textContent = item.nombre;
+          contenedor.appendChild(link);
+        });
+      });
+
+    // DATOS DE USUARIO
+    fetch('/session')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('nombreUsuario').textContent = data.nombre;
+        document.getElementById('rolUsuario').textContent = data.rol;
+      });
+  </script>
+
+</body>
+</html>

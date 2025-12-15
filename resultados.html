@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Subir Resultados</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-left">
+    <span>Laboratorio Clínico BioTEC</span>
+    <img src="/img/logo.png" class="logo">
+  </div>
+  <div class="nav-right" id="menu"></div>
+</nav>
+
+<div class="main">
+  <h2>Subir resultados médicos</h2>
+
+  <form 
+    action="/resultados/subir"
+    method="POST"
+    enctype="multipart/form-data"
+    class="auth-form"
+  >
+    <label>Paciente</label>
+    <select name="usuario_id" required id="pacientes"></select>
+
+    <label>Estudio</label>
+    <select name="estudio_id" required id="estudios"></select>
+
+    <label>Archivo PDF</label>
+    <input type="file" name="resultado" accept=".pdf" required>
+
+    <button class="btn btn-primary">Subir resultado</button>
+  </form>
+</div>
+
+<script>
+fetch('/menu')
+  .then(res => res.json())
+  .then(menu => {
+    const cont = document.getElementById('menu');
+    menu.forEach(i => {
+      const a = document.createElement('a');
+      a.href = i.url;
+      a.textContent = i.nombre;
+      cont.appendChild(a);
+    });
+  });
+
+fetch('/pacientes/lista-json')
+  .then(res => res.json())
+  .then(data => {
+    const sel = document.getElementById('pacientes');
+    data.forEach(p => {
+      sel.innerHTML += `<option value="${p.id}">${p.nombre}</option>`;
+    });
+  });
+
+fetch('/estudios/lista')
+  .then(res => res.json())
+  .then(data => {
+    const sel = document.getElementById('estudios');
+    data.forEach(e => {
+      sel.innerHTML += `<option value="${e.id}">${e.nombre}</option>`;
+    });
+  });
+</script>
+
+</body>
+</html>
