@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Médicos</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="auth-body">
+
+<nav class="navbar">
+  <div class="nav-left">
+    <span>Laboratorio Clínico BioTEC</span>    
+    <img src="/img/logo.png" alt="Logo" class="logo">
+
+  </div>
+  <div class="nav-right" id="menu">
+    <!-- menú dinámico -->
+  </div>
+</nav>
+<script>
+  fetch('/menu')
+    .then(res => {
+      if (!res.ok) throw new Error('No autorizado');
+      return res.json();
+    })
+    .then(menu => {
+      const contenedor = document.getElementById('menu');
+      contenedor.innerHTML = '';
+
+      menu.forEach(item => {
+        const link = document.createElement('a');
+        link.href = item.url;
+        link.textContent = item.nombre;
+        contenedor.appendChild(link);
+      });
+    })
+    .catch(() => {
+      window.location.href = '/login.html';
+    });
+</script>
+
+
+
+  <div class="auth-container">
+    <div class="auth-card">
+
+      <h2>Gestión de Médicos</h2>
+      <p>Selecciona una opción</p>
+    <a href="/medicos/nuevo" class="btn btn-primary">
+    Registrar nuevo médico
+    </a>
+
+    <a href="/medicos/lista" class="btn btn-secondary">
+    Ver lista de médicos
+    </a>
+
+    <a href="/dashboard" class="btn btn-link">
+    Volver
+    </a>
+
+
+    </div>
+  </div>
+
+</body>
+</html>
