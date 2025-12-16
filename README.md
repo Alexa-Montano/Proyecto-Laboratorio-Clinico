@@ -19,12 +19,80 @@ mysql> show tables;
 ```
 Estructura de las tablas.
 ```
-mysql> select * from codigos_rol;
-+----+------------+-----------+--------+
-| id | codigo     | rol       | activo |
-+----+------------+-----------+--------+
-|  1 | ADMIN-2025 | admin     |      1 |
-|  2 | MED-2025   | asistente |      1 |
-|  3 | PAC-2025   | cliente   |      1 |
-+----+------------+-----------+--------+
+mysql> describe usuarios;
++---------------+-------------------------------------+------+-----+---------+----------------+
+| Field         | Type                                | Null | Key | Default | Extra          |
++---------------+-------------------------------------+------+-----+---------+----------------+
+| id            | int                                 | NO   | PRI | NULL    | auto_increment |
+| nombre        | varchar(100)                        | NO   |     | NULL    |                |
+| correo        | varchar(150)                        | NO   | UNI | NULL    |                |
+| password_hash | varchar(150)                        | NO   |     | NULL    |                |
+| rol           | enum('admin','asistente','cliente') | NO   |     | NULL    |                |
++---------------+-------------------------------------+------+-----+---------+----------------+
+mysql> describe resultados;
++---------------+--------------------------------+------+-----+-------------------+-------------------+
+| Field         | Type                           | Null | Key | Default           | Extra             |
++---------------+--------------------------------+------+-----+-------------------+-------------------+
+| id            | int                            | NO   | PRI | NULL              | auto_increment    |
+| cita_id       | int                            | YES  | UNI | NULL              |                   |
+| valores       | text                           | YES  |     | NULL              |                   |
+| observaciones | text                           | YES  |     | NULL              |                   |
+| archivo       | varchar(255)                   | YES  |     | NULL              |                   |
+| estado        | enum('pendiente','disponible') | YES  |     | pendiente         |                   |
+| fecha_subida  | timestamp                      | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++---------------+--------------------------------+------+-----+-------------------+-------------------+
+
+mysql> describe pacientes;
++------------------+--------------+------+-----+---------+----------------+
+| Field            | Type         | Null | Key | Default | Extra          |
++------------------+--------------+------+-----+---------+----------------+
+| id               | int          | NO   | PRI | NULL    | auto_increment |
+| nombre           | varchar(100) | NO   |     | NULL    |                |
+| correo           | varchar(150) | YES  |     | NULL    |                |
+| telefono         | varchar(20)  | YES  |     | NULL    |                |
+| fecha_nacimiento | date         | YES  |     | NULL    |                |
++------------------+--------------+------+-----+---------+----------------+
+
+mysql> describe citas;
++------------+-----------------------------------------+------+-----+----------+----------------+
+| Field      | Type                                    | Null | Key | Default  | Extra          |
++------------+-----------------------------------------+------+-----+----------+----------------+
+| id         | int                                     | NO   | PRI | NULL     | auto_increment |
+| usuario_id | int                                     | NO   | MUL | NULL     |                |
+| estudio_id | int                                     | NO   | MUL | NULL     |                |
+| fecha      | date                                    | NO   |     | NULL     |                |
+| hora       | time                                    | NO   |     | NULL     |                |
+| estado     | enum('Agendada','Cancelada','Atendida') | YES  |     | Agendada |                |
++------------+-----------------------------------------+------+-----+----------+----------------+
+
+mysql> describe codigos_rol;
++--------+-------------------------------------+------+-----+---------+----------------+
+| Field  | Type                                | Null | Key | Default | Extra          |
++--------+-------------------------------------+------+-----+---------+----------------+
+| id     | int                                 | NO   | PRI | NULL    | auto_increment |
+| codigo | varchar(50)                         | NO   | UNI | NULL    |                |
+| rol    | enum('admin','asistente','cliente') | NO   |     | NULL    |                |
+| activo | tinyint(1)                          | YES  |     | 1       |                |
++--------+-------------------------------------+------+-----+---------+----------------+
+
+mysql> describe estudios;
++-------------+---------------+------+-----+---------+----------------+
+| Field       | Type          | Null | Key | Default | Extra          |
++-------------+---------------+------+-----+---------+----------------+
+| id          | int           | NO   | PRI | NULL    | auto_increment |
+| nombre      | varchar(100)  | NO   |     | NULL    |                |
+| descripcion | text          | YES  |     | NULL    |                |
+| precio      | decimal(10,2) | NO   |     | NULL    |                |
++-------------+---------------+------+-----+---------+----------------+
+
+mysql> describe medicos;
++--------------------+--------------+------+-----+---------+----------------+
+| Field              | Type         | Null | Key | Default | Extra          |
++--------------------+--------------+------+-----+---------+----------------+
+| id                 | int          | NO   | PRI | NULL    | auto_increment |
+| nombre             | varchar(100) | NO   |     | NULL    |                |
+| especialidad       | varchar(100) | NO   |     | NULL    |                |
+| cedula_profesional | varchar(50)  | NO   |     | NULL    |                |
++--------------------+--------------+------+-----+---------+----------------+
+
 ```
