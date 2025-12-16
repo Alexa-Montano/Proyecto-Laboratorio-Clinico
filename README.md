@@ -1,5 +1,11 @@
 # Proyecto-Laboratorio-Clinico
 El proyecto propuesto consiste en el desarrollo de un sistema web para la gestión integral de un laboratorio clínico, el cual permitirá administrar de manera centralizada la información de pacientes, médicos y estudios médicos, considerando distintos roles de usuario con permisos específicos.
+# Objetivo del proyecto
+El objetivo de esta practica es desarrollar una plataforma web para la gestión y entrega de resultados de estudios médicos en un laboratorio clínico, que permita administrar la información de pacientes, médicos y estudios de manera segura, eficiente y organizada. 
+La página:
+- Implementa módulos para la administración de pacientes, médicos y estudios médicos.
+- Desarrolla el control de acceso y autenticación según el rol del usuario.
+- Permite la consulta y entrega digital de resultados médicos.
 # Base de datos
 La base de datos para este proyecto fue creada con el nombre de laboratorio. Esta base de datos contiene las siguientes tablas.
 mysql> show tables;
