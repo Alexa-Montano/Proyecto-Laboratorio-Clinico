@@ -7,6 +7,13 @@ La página:
 - Desarrolla el control de acceso y autenticación según el rol del usuario.
 - Permite la consulta y entrega digital de resultados médicos.
 # Estructura del proyecto
+- node_modules/: Dependencias del proyecto Node.js.
+- public/: Archivos estáticos del sistema (HTML, CSS, imágenes).
+- css/: Estilos del sistema web.
+- img/: Recursos gráficos del sistema.
+- Archivos HTML: Interfaces para pacientes, médicos, estudios y resultados.
+- server.js: Lógica del servidor, rutas y conexión con la base de datos.
+- package.json: Configuración del proyecto y dependencias.
 ```
 PROYECTO_LABORATORIO/
 │
