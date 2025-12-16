@@ -6,6 +6,42 @@ La página:
 - Implementa módulos para la administración de pacientes, médicos y estudios médicos.
 - Desarrolla el control de acceso y autenticación según el rol del usuario.
 - Permite la consulta y entrega digital de resultados médicos.
+# Estructura del proyecto
+```
+PROYECTO_LABORATORIO/
+│
+├── laboratorio/
+│   │
+│   ├── node_modules/
+│   │
+│   ├── public/
+│   │   │
+│   │   ├── css/
+│   │   │   └── styles.css
+│   │   │
+│   │   ├── img/
+│   │   │   ├── logo.png
+│   │   │   └── resultados/
+│   │   │
+│   │   ├── busquedas.html
+│   │   ├── dashboard.html
+│   │   ├── estudio_nuevo.html
+│   │   ├── estudios.html
+│   │   ├── index.html
+│   │   ├── login.html
+│   │   ├── medico_nuevo.html
+│   │   ├── medicos.html
+│   │   ├── paciente_nuevo.html
+│   │   ├── pacientes.html
+│   │   ├── registro.html
+│   │   └── resultados.html
+│   │
+│   ├── package.json
+│   ├── package-lock.json
+│   └── server.js
+
+```
+
 # Base de datos
 La base de datos para este proyecto fue creada con el nombre de laboratorio. Esta base de datos contiene las siguientes tablas.
 mysql> show tables;
